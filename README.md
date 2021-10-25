@@ -11,7 +11,21 @@ Data Sources: city_data.csv, PyBer_ride_data.csv, ride_data.csv
 
 <img width="466" alt="PyBer_summary" src="https://user-images.githubusercontent.com/90050622/138782189-565aec26-a547-4782-9e13-ac2c04b37249.PNG">
 
+```
+pyber_summary_df = pd.DataFrame({
+   "Total Riders": rides_by_type,
+   "Total Drivers": drivers_by_type,
+   "Total Fares": fares_by_type,
+   "Average Fare Per Ride": avgfare_by_type,
+   "Average Fare Per Driver": avgfare_driver_by_type})
+   ```
+
 ![PyBer_fare_summary](https://user-images.githubusercontent.com/90050622/138782222-099b1f91-0779-4a8e-a042-b8b8422fc023.png)
+
+```
+fare_type_date_df = pyber_data_df.groupby(["type", "date"]).sum()[["fare"]]
+fare_type_data_pivot = fare_type_date_df.pivot(index="date", columns="type", values="fare")
+```
 
  - Total Riders
    - The total amount of riders in urban city types is actually more than twice as much as riders in suburban city types and rural city types combined.  
